@@ -1,61 +1,165 @@
+/* ==========================================================================
+   1. CONFIGURACIÓN GENERAL (RESET)
+   ========================================================================== */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
+    margin: 0;                   /* Quita los espacios exteriores que los navegadores ponen por defecto */
+    padding: 0;                  /* Quita los espacios interiores por defecto */
+    box-sizing: border-box;      /* Hace que el padding y los bordes no alteren el ancho total del elemento */
 }
 
+/* ==========================================================================
+   2. ESTILOS DE LA PÁGINA (BODY Y HTML)
+   ========================================================================== */
 body {
-    background-color: #f0f2f5;
-    text-align: center;
-    padding: 40px 20px;
+    font-family: Arial, sans-serif; /* Tipo de letra limpia y estándar */
+    background: #1a1a2e;         /* Color de fondo azul oscuro/oscuro de la web */
+    color: #fff;                 /* Color de texto blanco general */
+    min-height: 100vh;           /* Fuerza al cuerpo a ocupar como mínimo todo el alto de la pantalla */
+    display: flex;               /* Activa Flexbox para ordenar los elementos hijos en bloque */
+    flex-direction: column;      /* Apila los elementos (container y footer) uno abajo del otro */
+    align-items: center;         /* Centra horizontalmente todo el contenido */
+}
+
+html, body {
+    height: 100%;                /* Asegura que tanto el HTML como el Body cubran el 100% de la pantalla */
+}
+
+/* ==========================================================================
+   3. CONTENEDOR PRINCIPAL Y TÍTULOS
+   ========================================================================== */
+.container {
+    text-align: center;          /* Centra todos los textos que estén adentro */
+    padding: 2rem;               /* Espacio interno de seguridad alrededor del contenido */
+    flex: 1;                     /* Empuja el pie de página (footer) hacia abajo ocupando el espacio sobrante */
+    display: flex;               /* Usa Flexbox interno para ordenar sus propios elementos */
+    flex-direction: column;      /* Apila el título, las tarjetas y la tabla verticalmente */
+    justify-content: center;     /* Centra el contenido verticalmente si sobra espacio */
 }
 
 h1 {
-    margin-bottom: 30px;
-    color: #333;
+    font-size: 3rem;             /* Tamaño de letra muy grande para el título principal */
+    margin-bottom: 0.5rem;       /* Separación respecto al subtítulo inferior */
+    text-transform: uppercase;   /* Convierte todo el texto a MAYÚSCULAS */
+    letter-spacing: 4px;         /* Añade separación de 4px entre cada letra */
+    color: #e94560;              /* Color rojo neón para el título */
+    text-shadow: 0 0 20px rgba(233, 69, 96, 0.5); /* Efecto de brillo de neón rosado */
 }
 
-/* El contenedor de los 4 bloques */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas iguales */
-    gap: 20px;
-    max-width: 500px;
-    margin: 0 auto;
+.subtitle {
+    font-size: 1.5rem;           /* Tamaño mediano para el "- GRUPO F -" */
+    color: #e94560;              /* Mismo color rojo neón */
+    margin-bottom: 3rem;         /* Gran separación de 3rem antes de que empiecen las tarjetas */
+    letter-spacing: 6px;         /* Letras todavía más separadas para dar estilo de torneo */
+    text-shadow: 0 0 20px rgba(233, 69, 96, 0.5); /* Mismo efecto de brillo de neón */
 }
 
-/* Cada bloque de país */
-.pais {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* ==========================================================================
+   4. SECCIÓN DE TARJETAS DE PAÍSES
+   ========================================================================== */
+.countries {
+    display: flex;               /* Activa Flexbox para poner las tarjetas una al lado de la otra */
+    justify-content: center;     /* Centra el bloque completo de tarjetas en el medio de la pantalla */
+    gap: 2rem;                   /* Separación de 2rem entre tarjeta y tarjeta */
+    flex-wrap: wrap;             /* Si no caben en la pantalla (como en celulares), se bajan automáticamente */
 }
 
-/* Las imágenes de las banderas */
-.bandera {
-    width: 120px;
-    height: 80px;
-    object-fit: cover; /* Hace que la foto llene el recuadro sin deformarse */
-    border-radius: 4px;
-    margin-bottom: 10px;
-    border: 2px solid #333333;
+.country-card {
+    background: #16213e;         /* Color azul marino para el fondo de cada tarjeta */
+    border-radius: 15px;         /* Bordes de la tarjeta muy redondeados */
+    padding: 1.5rem;             /* Espacio interno entre el borde y el contenido de la tarjeta */
+    width: 250px;                /* Ancho fijo de 250px para que todas las tarjetas midan igual */
+    transition: transform 0.3s, box-shadow 0.3s; /* Suaviza el movimiento y la sombra al pasar el mouse */
 }
 
-/* El texto del nombre */
-span {
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: #444;
+/* Efecto cuando pasas el mouse por encima de una tarjeta */
+.country-card:hover {
+    transform: translateY(-10px); /* Eleva la tarjeta 10px hacia arriba dando efecto 3D */
+    box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3); /* Añade un brillo de neón debajo al levantarla */
 }
 
-/* Si se abre en celular, se pone en 1 sola columna */
-@media (max-width: 450px) {
-    .grid-container {
-        grid-template-columns: 1fr;
-    }
+.country-card h2 {
+    font-size: 1.3rem;           /* Tamaño del nombre del país dentro de la tarjeta */
+    margin-bottom: 1rem;         /* Separación inferior antes de la foto de la bandera */
+    color: #fff;                 /* Texto del país en color blanco puro */
+}
+
+.country-card img {
+    width: 100%;                 /* La bandera ocupa todo el ancho disponible dentro de la tarjeta */
+    height: 150px;               /* Alto fijo de 150px para todas las banderas */
+    object-fit: cover;           /* Evita que las banderas se estiren o deformen, recortando si es necesario */
+    border-radius: 10px;         /* Bordes redondeados para la imagen de la bandera */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra oscura debajo de la bandera para darle relieve */
+}
+
+/* ==========================================================================
+   5. TABLA DE DATOS INFORMATIVOS
+   ========================================================================== */
+.tabla-datos {
+    margin-top: 5rem;            /* Separa la tabla bastante hacia abajo respecto a las tarjetas */
+}
+
+table {
+    width: 100%;                 /* Obliga a la tabla a expandirse a todo el ancho de su contenedor */
+    border-collapse: collapse;   /* Une los bordes de las celdas para que no se vean dobles líneas */
+    background: #16213e;         /* Mismo fondo azul marino que las tarjetas */
+    border-radius: 15px;         /* Bordes redondeados en las esquinas de la tabla */
+    overflow: hidden;            /* Obliga a las celdas de las esquinas a respetar el redondeado anterior */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Sombra pesada alrededor de toda la tabla */
+    font-size: 0.85rem;          /* Letra un poco más pequeña para que quepan bien los textos largos */
+}
+
+th, td {
+    padding: 0.75rem 0.5rem;     /* Espacio interior de las celdas (arriba/abajo y lados) */
+    text-align: left;            /* Alinea el texto de los datos hacia la izquierda */
+    border-bottom: 1px solid #1a1a2e; /* Línea divisoria muy oscura entre cada fila */
+    vertical-align: top;         /* Si un texto es muy largo, el de al lado se alinea arriba del todo */
+}
+
+th {
+    background: #e94560;         /* Fondo rojo neón para la fila de títulos de la tabla */
+    color: #fff;                 /* Texto blanco para los títulos */
+    font-weight: bold;           /* Letra en negrita */
+    text-transform: uppercase;   /* Títulos en MAYÚSCULAS */
+    letter-spacing: 1px;         /* Pequeño espacio estilizado entre letras */
+    font-size: 0.75rem;          /* Títulos un poco más pequeños para resaltar el contenido */
+    white-space: nowrap;         /* Evita que los títulos se rompan en dos líneas */
+}
+
+/* Efecto al pasar el mouse sobre una fila de la tabla */
+tr:hover {
+    background: rgba(233, 69, 96, 0.1); /* Ilumina la fila con un fondo rojo neón muy transparente */
+}
+
+/* ==========================================================================
+   6. SECCIÓN DE ENLACES O REFERENCIAS (OPCIONAL)
+   ========================================================================== */
+.refs {
+    margin-top: 2rem;            /* Espacio de separación arriba */
+    font-size: 0.8rem;           /* Texto pequeño */
+}
+
+.refs a {
+    color: #e94560;              /* Links en color rojo neón */
+    text-decoration: none;       /* Le quita la línea subrayada por defecto de los links */
+}
+
+.refs a:hover {
+    text-decoration: underline;  /* Vuelve a poner el subrayado solo cuando pasas el mouse */
+}
+
+/* ==========================================================================
+   7. PIE DE PÁGINA (FOOTER)
+   ========================================================================== */
+.pie-pagina {
+    text-align: center;          /* Centra el texto del creador */
+    padding: 1.5rem 0;           /* Espacio interior arriba y abajo */
+    width: 100%;                 /* Ocupa toda la barra inferior de lado a lado */
+}
+
+.pie-pagina p {
+    font-size: 1.2rem;           /* Tamaño de letra para el nombre del autor */
+    color: #e94560;              /* Color rojo neón para hacer juego con el título */
+    letter-spacing: 4px;         /* Letras separadas al estilo de la marca */
+    text-shadow: 0 0 20px rgba(233, 69, 96, 0.5); /* Brillo de neón idéntico al del título h1 */
+    text-transform: uppercase;   /* Nombre del autor en MAYÚSCULAS */
 }
