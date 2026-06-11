@@ -10,21 +10,13 @@ body {
     color: #fff;
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-}
-
-html, body {
-    height: 100%;
 }
 
 .container {
     text-align: center;
     padding: 2rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 
 h1 {
@@ -79,64 +71,254 @@ h1 {
 }
 
 .tabla-datos {
-    margin-top: 5rem;
+    margin-top: 5rem;            /* Separa la tabla bastante hacia abajo respecto a las tarjetas */
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #16213e;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    font-size: 0.85rem;
+    width: 100%;                 /* Obliga a la tabla a expandirse a todo el ancho de su contenedor */
+    border-collapse: collapse;   /* Une los bordes de las celdas para que no se vean dobles líneas */
+    background: #16213e;         /* Mismo fondo azul marino que las tarjetas */
+    border-radius: 15px;         /* Bordes redondeados en las esquinas de la tabla */
+    overflow: hidden;            /* Obliga a las celdas de las esquinas a respetar el redondeado anterior */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Sombra pesada alrededor de toda la tabla */
+    font-size: 0.85rem;          /* Letra un poco más pequeña para que quepan bien los textos largos */
 }
 
 th, td {
-    padding: 0.75rem 0.5rem;
-    text-align: left;
-    border-bottom: 1px solid #1a1a2e;
-    vertical-align: top;
+    padding: 0.75rem 0.5rem;     /* Espacio interior de las celdas (arriba/abajo y lados) */
+    text-align: left;            /* Alinea el texto de los datos hacia la izquierda */
+    border-bottom: 1px solid #1a1a2e; /* Línea divisoria muy oscura entre cada fila */
+    vertical-align: top;         /* Si un texto es muy largo, el de al lado se alinea arriba del todo */
 }
 
 th {
-    background: #e94560;
-    color: #fff;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 0.75rem;
-    white-space: nowrap;
+    background: #e94560;         /* Fondo rojo neón para la fila de títulos de la tabla */
+    color: #fff;                 /* Texto blanco para los títulos */
+    font-weight: bold;           /* Letra en negrita */
+    text-transform: uppercase;   /* Títulos en MAYÚSCULAS */
+    letter-spacing: 1px;         /* Pequeño espacio estilizado entre letras */
+    font-size: 0.75rem;          /* Títulos un poco más pequeños para resaltar el contenido */
+    white-space: nowrap;         /* Evita que los títulos se rompan en dos líneas */
 }
 
-tr:hover {
-    background: rgba(233, 69, 96, 0.1);
+
+/* Estados Unidos */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(178, 34, 52, 0.15) 0%, transparent 70%);
+  pointer-events: none;
 }
 
-.refs {
-    margin-top: 2rem;
-    font-size: 0.8rem;
+.hero-badge {
+  color: #B22234;
+  border: 1px solid rgba(178, 34, 52, 0.3);
 }
 
-.refs a {
-    color: #e94560;
+.back-btn:hover {
+  border-color: #B22234;
+  color: #B22234;
+}
+
+.section-label {
+  color: #B22234;
+}
+
+.stat-box .val {
+  color: #B22234;
+}
+
+.match-date {
+  color: #B22234;
+}
+
+.curiosity {
+  border-left: 3px solid #3C3B6E;
+  background: rgba(60, 59, 110, 0.07);
+  color: #b8b8d8;
+}
+
+.curiosity strong {
+  color: #7e7eff;
+}
+/* Fin Estados Unidos */
+/* ==================================================
+   PAGINA DETALLE DE SELECCIONES
+================================================== */
+
+.back-btn{
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: #16213e;
+    color: white;
     text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 2px solid #e94560;
+    transition: 0.3s;
+    z-index: 1000;
 }
 
-.refs a:hover {
-    text-decoration: underline;
+.back-btn:hover{
+    background: #e94560;
+    color: white;
 }
 
-.pie-pagina {
-    text-align: center;
-    padding: 1.5rem 0;
+.hero{
     width: 100%;
+    max-width: 1200px;
+    margin: 80px auto 40px auto;
+    background: #16213e;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,.4);
 }
 
-.pie-pagina p {
-    font-size: 1.2rem;
+.hero-flag{
+    font-size: 5rem;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.hero-badge{
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 30px;
+    margin-bottom: 15px;
+    font-size: .9rem;
+    font-weight: bold;
+}
+
+.hero h1{
+    margin-bottom: 10px;
+}
+
+.hero .subtitle{
+    margin-bottom: 0;
+    color: #ccc;
+    letter-spacing: 2px;
+}
+
+.content{
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    gap: 25px;
+    padding: 20px;
+}
+
+.card{
+    background: #16213e;
+    border-radius: 15px;
+    padding: 25px;
+    line-height: 1.8;
+    box-shadow: 0 4px 20px rgba(0,0,0,.4);
+}
+
+.card h2{
+    margin-bottom: 15px;
     color: #e94560;
-    letter-spacing: 4px;
-    text-shadow: 0 0 20px rgba(233, 69, 96, 0.5);
+}
+
+.section-label{
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 12px;
     text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.stats-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    gap: 20px;
+}
+
+.stat-box{
+    background: #16213e;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,.4);
+}
+
+.stat-box .val{
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.stat-box .lbl{
+    color: #ccc;
+}
+
+.schedule-list{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.match-row{
+    background: #16213e;
+    padding: 20px;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 120px 1fr 220px;
+    gap: 20px;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,.4);
+}
+
+.match-date{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.match-vs{
+    font-size: 1rem;
+}
+
+.match-venue{
+    color: #ccc;
+}
+
+.curiosity{
+    padding: 20px;
+    border-radius: 15px;
+    line-height: 1.8;
+}
+
+.country-card{
+    text-decoration: none;
+    color: white;
+}
+
+.country-card h2{
+    color: white;
+}
+
+@media (max-width: 768px){
+
+    .hero{
+        padding: 25px;
+    }
+
+    .hero-flag{
+        font-size: 4rem;
+    }
+
+    .match-row{
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .stats-grid{
+        grid-template-columns: 1fr;
+    }
 }
