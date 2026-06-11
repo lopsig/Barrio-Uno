@@ -1,147 +1,75 @@
-/* ==========================================================================
-   1. CONFIGURACIÓN GENERAL (RESET)
-   ========================================================================== */
 * {
     margin: 0;
-    /* Quita los espacios exteriores que los navegadores ponen por defecto */
     padding: 0;
-    /* Quita los espacios interiores por defecto */
     box-sizing: border-box;
-    /* Hace que el padding y los bordes no alteren el ancho total del elemento */
 }
 
-/* ==========================================================================
-   2. ESTILOS DE LA PÁGINA (BODY Y HTML)
-   ========================================================================== */
 body {
     font-family: Arial, sans-serif;
-    /* Tipo de letra limpia y estándar */
     background: #1a1a2e;
-    /* Color de fondo azul oscuro/oscuro de la web */
     color: #fff;
-    /* Color de texto blanco general */
     min-height: 100vh;
-    /* Fuerza al cuerpo a ocupar como mínimo todo el alto de la pantalla */
     display: flex;
-    /* Activa Flexbox para ordenar los elementos hijos en bloque */
-    flex-direction: column;
-    /* Apila los elementos (container y footer) uno abajo del otro */
+    justify-content: center;
     align-items: center;
-    /* Centra horizontalmente todo el contenido */
 }
 
-html,
-body {
-    height: 100%;
-    /* Asegura que tanto el HTML como el Body cubran el 100% de la pantalla */
-}
-
-/* ==========================================================================
-   3. CONTENEDOR PRINCIPAL Y TÍTULOS
-   ========================================================================== */
 .container {
     text-align: center;
-    /* Centra todos los textos que estén adentro */
     padding: 2rem;
-    /* Espacio interno de seguridad alrededor del contenido */
-    flex: 1;
-    /* Empuja el pie de página (footer) hacia abajo ocupando el espacio sobrante */
-    display: flex;
-    /* Usa Flexbox interno para ordenar sus propios elementos */
-    flex-direction: column;
-    /* Apila el título, las tarjetas y la tabla verticalmente */
-    justify-content: center;
-    /* Centra el contenido verticalmente si sobra espacio */
 }
 
 h1 {
     font-size: 3rem;
-    /* Tamaño de letra muy grande para el título principal */
     margin-bottom: 0.5rem;
-    /* Separación respecto al subtítulo inferior */
     text-transform: uppercase;
-    /* Convierte todo el texto a MAYÚSCULAS */
     letter-spacing: 4px;
-    /* Añade separación de 4px entre cada letra */
     color: #e94560;
-    /* Color rojo neón para el título */
     text-shadow: 0 0 20px rgba(233, 69, 96, 0.5);
-    /* Efecto de brillo de neón rosado */
 }
 
 .subtitle {
     font-size: 1.5rem;
-    /* Tamaño mediano para el "- GRUPO F -" */
     color: #e94560;
-    /* Mismo color rojo neón */
     margin-bottom: 3rem;
-    /* Gran separación de 3rem antes de que empiecen las tarjetas */
     letter-spacing: 6px;
-    /* Letras todavía más separadas para dar estilo de torneo */
     text-shadow: 0 0 20px rgba(233, 69, 96, 0.5);
-    /* Mismo efecto de brillo de neón */
 }
 
-/* ==========================================================================
-   4. SECCIÓN DE TARJETAS DE PAÍSES
-   ========================================================================== */
 .countries {
     display: flex;
-    /* Activa Flexbox para poner las tarjetas una al lado de la otra */
     justify-content: center;
-    /* Centra el bloque completo de tarjetas en el medio de la pantalla */
     gap: 2rem;
-    /* Separación de 2rem entre tarjeta y tarjeta */
     flex-wrap: wrap;
-    /* Si no caben en la pantalla (como en celulares), se bajan automáticamente */
 }
 
 .country-card {
     background: #16213e;
-    /* Color azul marino para el fondo de cada tarjeta */
     border-radius: 15px;
-    /* Bordes de la tarjeta muy redondeados */
     padding: 1.5rem;
-    /* Espacio interno entre el borde y el contenido de la tarjeta */
     width: 250px;
-    /* Ancho fijo de 250px para que todas las tarjetas midan igual */
     transition: transform 0.3s, box-shadow 0.3s;
-    /* Suaviza el movimiento y la sombra al pasar el mouse */
 }
 
-/* Efecto cuando pasas el mouse por encima de una tarjeta */
 .country-card:hover {
     transform: translateY(-10px);
-    /* Eleva la tarjeta 10px hacia arriba dando efecto 3D */
     box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
-    /* Añade un brillo de neón debajo al levantarla */
 }
 
 .country-card h2 {
     font-size: 1.3rem;
-    /* Tamaño del nombre del país dentro de la tarjeta */
     margin-bottom: 1rem;
-    /* Separación inferior antes de la foto de la bandera */
     color: #fff;
-    /* Texto del país en color blanco puro */
 }
 
 .country-card img {
     width: 100%;
-    /* La bandera ocupa todo el ancho disponible dentro de la tarjeta */
     height: 150px;
-    /* Alto fijo de 150px para todas las banderas */
     object-fit: cover;
-    /* Evita que las banderas se estiren o deformen, recortando si es necesario */
     border-radius: 10px;
-    /* Bordes redondeados para la imagen de la bandera */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    /* Sombra oscura debajo de la bandera para darle relieve */
 }
 
-/* ==========================================================================
-   5. TABLA DE DATOS INFORMATIVOS
-   ========================================================================== */
 .tabla-datos {
     margin-top: 5rem;
     /* Separa la tabla bastante hacia abajo respecto a las tarjetas */
@@ -193,55 +121,226 @@ th {
     /* Evita que los títulos se rompan en dos líneas */
 }
 
-/* Efecto al pasar el mouse sobre una fila de la tabla */
-tr:hover {
-    background: rgba(233, 69, 96, 0.1);
-    /* Ilumina la fila con un fondo rojo neón muy transparente */
+
+/* Brasil*/
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(0, 156, 59, 0.15) 0%, transparent 70%);
+    pointer-events: none;
 }
 
-/* ==========================================================================
-   6. SECCIÓN DE ENLACES O REFERENCIAS (OPCIONAL)
-   ========================================================================== */
-.refs {
-    margin-top: 2rem;
-    /* Espacio de separación arriba */
-    font-size: 0.8rem;
-    /* Texto pequeño */
+.hero-badge {
+    color: #ffd700;
+    border: 1px solid rgba(255, 215, 0, 0.3);
 }
 
-.refs a {
-    color: #e94560;
-    /* Links en color rojo neón */
+.back-btn:hover {
+    border-color: #ffd700;
+    color: #ffd700;
+}
+
+.section-label {
+    color: #ffd700;
+}
+
+.stat-box .val {
+    color: #ffd700;
+}
+
+.match-date {
+    color: #ffd700;
+}
+
+.curiosity {
+    border-left: 3px solid #009c3b;
+    background: rgba(0, 156, 59, 0.07);
+    color: #b8d8c0;
+}
+
+.curiosity strong {
+    color: #7effa8;
+}
+
+/* Fin Brasil*/
+
+/* ==================================================
+   PAGINA DETALLE DE SELECCIONES
+================================================== */
+
+.back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: #16213e;
+    color: white;
     text-decoration: none;
-    /* Le quita la línea subrayada por defecto de los links */
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 2px solid #e94560;
+    transition: 0.3s;
+    z-index: 1000;
 }
 
-.refs a:hover {
-    text-decoration: underline;
-    /* Vuelve a poner el subrayado solo cuando pasas el mouse */
+.back-btn:hover {
+    background: #e94560;
+    color: white;
 }
 
-/* ==========================================================================
-   7. PIE DE PÁGINA (FOOTER)
-   ========================================================================== */
-.pie-pagina {
-    text-align: center;
-    /* Centra el texto del creador */
-    padding: 1.5rem 0;
-    /* Espacio interior arriba y abajo */
+.hero {
     width: 100%;
-    /* Ocupa toda la barra inferior de lado a lado */
+    max-width: 1200px;
+    margin: 80px auto 40px auto;
+    background: #16213e;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .4);
 }
 
-.pie-pagina p {
-    font-size: 1.2rem;
-    /* Tamaño de letra para el nombre del autor */
+.hero-flag {
+    font-size: 5rem;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 30px;
+    margin-bottom: 15px;
+    font-size: .9rem;
+    font-weight: bold;
+}
+
+.hero h1 {
+    margin-bottom: 10px;
+}
+
+.hero .subtitle {
+    margin-bottom: 0;
+    color: #ccc;
+    letter-spacing: 2px;
+}
+
+.content {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    gap: 25px;
+    padding: 20px;
+}
+
+.card {
+    background: #16213e;
+    border-radius: 15px;
+    padding: 25px;
+    line-height: 1.8;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .4);
+}
+
+.card h2 {
+    margin-bottom: 15px;
     color: #e94560;
-    /* Color rojo neón para hacer juego con el título */
-    letter-spacing: 4px;
-    /* Letras separadas al estilo de la marca */
-    text-shadow: 0 0 20px rgba(233, 69, 96, 0.5);
-    /* Brillo de neón idéntico al del título h1 */
+}
+
+.section-label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 12px;
     text-transform: uppercase;
-    /* Nombre del autor en MAYÚSCULAS */
+    letter-spacing: 2px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-box {
+    background: #16213e;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .4);
+}
+
+.stat-box .val {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.stat-box .lbl {
+    color: #ccc;
+}
+
+.schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.match-row {
+    background: #16213e;
+    padding: 20px;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 120px 1fr 220px;
+    gap: 20px;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .4);
+}
+
+.match-date {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.match-vs {
+    font-size: 1rem;
+}
+
+.match-venue {
+    color: #ccc;
+}
+
+.curiosity {
+    padding: 20px;
+    border-radius: 15px;
+    line-height: 1.8;
+}
+
+.country-card {
+    text-decoration: none;
+    color: white;
+}
+
+.country-card h2 {
+    color: white;
+}
+
+@media (max-width: 768px) {
+
+    .hero {
+        padding: 25px;
+    }
+
+    .hero-flag {
+        font-size: 4rem;
+    }
+
+    .match-row {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
 }
