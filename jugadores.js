@@ -43,8 +43,28 @@ jugador5.curiosidad = "Primer asiático en ganar la Bota de Oro de la Premier Le
 const jugador6 = crearJugador(6, "Akram Afif", "Qatar", "Extremo", "https://ui-avatars.com/api/?name=Akram+Afif&background=8A1538&color=ffffff&size=256&bold=true", "https://flagcdn.com/w320/qa.png", "#8A1538", 40, 127, false);
 jugador6.curiosidad = "En la final de la Copa Asiática 2023 anotó tres penales y celebró sacándose de la media un cromo de sí mismo, como si fuera un truco de magia.";
 
-// Meto los 6 jugadores al arreglo global
-cromosMundial.push(jugador1, jugador2, jugador3, jugador4, jugador5, jugador6);
+// jugadores grupo C
+const jugador7 = crearJugador(7, "Vinícius Júnior", "Brasil", "Extremo", "https://ui-avatars.com/api/?name=Vinicius+Junior&background=FFDF00&color=1A1A1A&size=256&bold=true", "https://flagcdn.com/w320/br.png", "#FFDF00", 11, 45, true);
+jugador7.curiosidad = "En 2024 fue elegido el mejor jugador del mundo por la FIFA, el primer brasileño en lograrlo desde Kaká, y ha ganado dos veces la Champions League marcando en ambas finales.";
+
+const jugador8 = crearJugador(8, "Achraf Hakimi", "Marruecos", "Defensa", "https://ui-avatars.com/api/?name=Achraf+Hakimi&background=C1272D&color=ffffff&size=256&bold=true", "https://flagcdn.com/w320/ma.png", "#C1272D", 12, 97, true);
+jugador8.curiosidad = "Nació y se crió en Madrid, pero eligió jugar por Marruecos, el país de sus padres; hoy es su capitán y está considerado uno de los mejores laterales del mundo.";
+
+const jugador9 = crearJugador(9, "Scott McTominay", "Escocia", "Centrocampista", "https://ui-avatars.com/api/?name=Scott+McTominay&background=003478&color=ffffff&size=256&bold=true", "https://flagcdn.com/w320/gb-sct.png", "#003478", 14, 69, false);
+jugador9.curiosidad = "Su espectacular gol de chilena ante Dinamarca clasificó a Escocia a su primer Mundial en 28 años; en Glasgow le hicieron un mural por esa jugada.";
+
+const jugador10 = crearJugador(10, "Christian Pulisic", "Estados Unidos", "Extremo", "https://ui-avatars.com/api/?name=Christian+Pulisic&background=002868&color=ffffff&size=256&bold=true", "https://flagcdn.com/w320/us.png", "#002868", 33, 87, true);
+jugador10.curiosidad = "Apodado 'Capitán América', es el único estadounidense que ha jugado y ganado una final de Champions League, y marcó el gol que metió a su país en octavos en el Mundial 2022.";
+
+const jugador11 = crearJugador(11, "Hakan Çalhanoğlu", "Türkiye", "Centrocampista", "https://ui-avatars.com/api/?name=Hakan+Calhanoglu&background=E30A17&color=ffffff&size=256&bold=true", "https://flagcdn.com/w320/tr.png", "#E30A17", 22, 110, true);
+jugador11.curiosidad = "Nació en Alemania pero eligió jugar por Türkiye, a la que capitanea; es uno de los mejores lanzadores de tiros libres del mundo, con goles desde más de 40 metros.";
+
+const jugador12 = crearJugador(12, "Miguel Almirón", "Paraguay", "Mediapunta", "https://ui-avatars.com/api/?name=Miguel+Almiron&background=CE1126&color=ffffff&size=256&bold=true", "https://flagcdn.com/w320/py.png", "#CE1126", 9, 76, false);
+jugador12.curiosidad = "Creció en la pobreza en Asunción y llegó a jugar siete años en la Premier League con el Newcastle; ahora lidera el ataque de Paraguay en su primer Mundial desde 2010.";
+
+
+// Meto los 6 jugadores al arreglo global 
+cromosMundial.push(jugador1, jugador2, jugador3, jugador4, jugador5, jugador6,jugador7, jugador8, jugador9, jugador10, jugador11, jugador12);
 
 
 
@@ -74,5 +94,17 @@ const renderizarAlbum = () => {
   })
 }
 
-renderizarAlbum()
+renderizarAlbum();
+goles();
 
+//grupo c & d: total goles
+function goles() {
+  let totalGoles = 0;
+
+  for (let i = 0; i < cromosMundial.length; i++) {
+    let acumulaGoles = cromosMundial[i].estadisticas.goles;
+    totalGoles += acumulaGoles;
+  }
+
+  document.getElementById("goles-totales").textContent = "Total Goles: "+totalGoles;
+}
