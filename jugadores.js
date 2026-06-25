@@ -69,30 +69,113 @@ cromosMundial.push(jugador1, jugador2, jugador3, jugador4, jugador5, jugador6,ju
 
 
 //-----FUNCION RENDERIZADO-----
+// =================================================================
+// CÓDIGO DEL ESTUDIANTE F - LOGICA DE GAMIFICACIÓN Y DESBLOQUEO
+// =================================================================
+
+// Arreglo para guardar los IDs de los jugadores que el usuario va desbloqueando
+const cromosDesbloqueados = [];
+
+// REQUERIMIENTO 3: Función del contador interactivo en tiempo real
+const actualizarContador = () => {
+  const contenedorContador = document.getElementById("contador-progreso");
+  const totalGlobal = cromosMundial.length;
+  const totalDesbloqueados = cromosDesbloqueados.length;
+
+  // Cálculo del porcentaje dinámico con la fórmula requerida
+  const porcentaje = totalGlobal > 0 ? Math.round((totalDesbloqueados / totalGlobal) * 100) : 0;
+
+  if (contenedorContador) {
+    contenedorContador.innerHTML = `
+      <div style="background: #f4f4f4; padding: 8px 15px; border-radius: 6px; display: inline-block; margin-top: 10px; font-weight: bold; color: #333;">
+        Progreso del Álbum: ${porcentaje}% completado (${totalDesbloqueados}/${totalGlobal})
+      </div>
+    `;
+  }
+};
+
+// NUEVA FUNCIÓN DE RENDERIZADO (Reemplaza por completo a la anterior)
 const renderizarAlbum = () => {
   const contenedor = document.getElementById("album");
-
+  if (!contenedor) return;
   contenedor.innerHTML = "";
 
   cromosMundial.forEach(jugador => {
+    // Comprobar si el cromo ya fue desbloqueado por el usuario
+    const estaDesbloqueado = cromosDesbloqueados.includes(jugador.id);
 
-    const tarjetaHTML = `
+    // Creamos el contenedor div de la tarjeta usando objetos del DOM para meter clases dinámicas
+    const tarjeta = document.createElement("div");
+    tarjeta.classList.add("card-cromo"); // Clase base del proyecto que usará el estudiante D
+    tarjeta.style.backgroundColor = jugador.colorFondoHex;
+    
+    // REQUERIMIENTO 1: Si no está desbloqueado, aplicamos tu filtro opaco inicial
+    if (!estaDesbloqueado) {
+      tarjeta.classList.add("cromo-bloqueado");
+    }
+
+    // Estructura interna de la tarjeta (Mantiene intactos los datos de tus compañeros)
+    let tarjetaHTML = `
+      <img src="${jugador.urlBandera}" alt="Bandera de ${jugador.pais}" width="30">
+      <img src="${jugador.urlImagen}" alt="Foto de ${jugador.nombre}">
+      <h2>${jugador.nombre}</h2>
+      <p><strong>${jugador.pais}</strong></p>
+      <p>${jugador.posicion}</p>
       <div>
-        <img src="${jugador.urlBandera}" alt= "Bandera de ${jugador.pais}">
-        <img src="${jugador.urlImagen}" alt= "Foto de ${jugador.nombre}">
-        <h2>${jugador.nombre}</h2>
-        <p>${jugador.pais}</p>
-        <p>${jugador.posicion}</p>
-        <div>
-          <span>⚽ ${jugador.estadisticas.goles} goles</span>
-          <span>🏟️ ${jugador.estadisticas.partidos} partidos</span>
-        </div>
+        <span>⚽ ${jugador.estadisticas.goles} goles</span>
+        <span>🏟️ ${jugador.estadisticas.partidos} partidos</span>
       </div>
+      <p style="font-size: 0.85rem; font-style: italic; margin-top: 8px; color: #555;">"${jugador.curiosidad}"</p>
     `;
 
-    contenedor.innerHTML += tarjetaHTML;
-  })
-}
+    // REQUERIMIENTO 2: Añadir botón dinámico sobre la tarjeta solo si sigue bloqueada
+    if (!estaDesbloqueado) {
+      tarjetaHTML += `
+        <button class="btn-reto" data-id="${jugador.id}">Desbloquear Cromo con Reto</button>
+      `;
+    }
+
+    tarjeta.innerHTML = tarjetaHTML;
+    contenedor.appendChild(tarjeta);
+  });
+
+  // Asignar los eventos 'click' a cada botón generado dinámicamente
+  const botones = document.querySelectorAll(".btn-reto");
+  botones.forEach(boton => {
+    boton.addEventListener("click", (e) => {
+      const idJugador = parseInt(e.target.getAttribute("data-id"));
+      // Buscamos la tarjeta contenedora para aplicarle la animación
+      const tarjetaElemento = e.target.closest(".card-cromo");
+      
+      ejecutarDesbloqueo(idJugador, tarjetaElemento);
+    });
+  });
+
+  // Actualizar el porcentaje cada vez que se redibuje el álbum
+  actualizarContador();
+};
+
+// REQUERIMIENTO 2: Función lógica que procesa el desbloqueo y dispara la animación flash
+const ejecutarDesbloqueo = (id, tarjetaElemento) => {
+  if (!cromosDesbloqueados.includes(id)) {
+    cromosDesbloqueados.push(id);
+  }
+
+  // Añadir la clase de animación de destello (0.5s)
+  tarjetaElemento.classList.add("animacion-flash");
+
+  // Esperar los 500ms exactos que dura el destello para limpiar clases y re-renderizar
+  setTimeout(() => {
+    tarjetaElemento.classList.remove("cromo-bloqueado");
+    tarjetaElemento.classList.remove("animacion-flash");
+    
+    // Volver a renderizar para ocultar el botón y actualizar el contador en tiempo real
+    renderizarAlbum();
+  }, 500);
+};
+
+// Ejecución inicial automática al cargar el script
+
 
 renderizarAlbum();
 goles();

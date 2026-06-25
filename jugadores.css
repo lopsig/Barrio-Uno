@@ -1,0 +1,38 @@
+/* ==========================================
+   CÓDIGO DEL ESTUDIANTE F (ANIMACIONES Y FILTROS)
+   ========================================== */
+
+/* REQUERIMIENTO 1: Filtro CSS opaco inicial para simular bloqueo */
+.cromo-bloqueado {
+  filter: grayscale(100%) blur(2px);
+  transition: filter 0.4s ease; /* Transición suave cuando se remueva el bloqueo */
+}
+
+/* REQUERIMIENTO 2: Animación de destello flash (0.5 segundos) */
+@keyframes flash {
+  0% { filter: brightness(1) grayscale(100%) blur(2px); opacity: 1; }
+  50% { filter: brightness(2.5) grayscale(0%) blur(0px); opacity: 0.8; }
+  100% { filter: brightness(1) grayscale(0%) blur(0px); opacity: 1; }
+}
+
+.animacion-flash {
+  animation: flash 0.5s ease-out;
+}
+
+/* Estilo estético para tu botón dinámico */
+.btn-reto {
+  background-color: #006847;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  display: block;
+  width: 100%;
+}
+
+.btn-reto:hover {
+  background-color: #004d34;
+}
