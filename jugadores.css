@@ -1,36 +1,44 @@
 /* ==========================================
-   CÓDIGO DEL ESTUDIANTE F (ANIMACIONES Y FILTROS)
+   CÓDIGO DEL ESTUDIANTE F (BOTÓN EXTERIOR)
    ========================================== */
 
-/* REQUERIMIENTO 1: Filtro CSS opaco inicial para simular bloqueo */
-.cromo-bloqueado {
-  filter: grayscale(100%) blur(2px);
-  transition: filter 0.4s ease; /* Transición suave cuando se remueva el bloqueo */
+/* Contenedor que agrupa la tarjeta y el botón de forma ordenada */
+.contenedor-cromo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
-/* REQUERIMIENTO 2: Animación de destello flash (0.5 segundos) */
+/* Filtro de bloqueo exclusivo de la tarjeta */
+.cromo-bloqueado {
+  filter: grayscale(100%) blur(2px);
+  transition: filter 0.4s ease;
+}
+
+/* Animación flash */
 @keyframes flash {
-  0% { filter: brightness(1) grayscale(100%) blur(2px); opacity: 1; }
-  50% { filter: brightness(2.5) grayscale(0%) blur(0px); opacity: 0.8; }
-  100% { filter: brightness(1) grayscale(0%) blur(0px); opacity: 1; }
+  0% { filter: brightness(1) grayscale(100%) blur(2px); }
+  50% { filter: brightness(2.5) grayscale(0%) blur(0px); }
+  100% { filter: brightness(1) grayscale(0%) blur(0px); }
 }
 
 .animacion-flash {
   animation: flash 0.5s ease-out;
 }
 
-/* Estilo estético para tu botón dinámico */
+/* Tu botón: Al estar fuera del div bloqueado, se ve nítido por defecto */
 .btn-reto {
   background-color: #006847;
   color: white;
   border: none;
-  padding: 8px 12px;
+  padding: 10px 15px;
   margin-top: 10px;
   cursor: pointer;
   border-radius: 4px;
   font-weight: bold;
-  display: block;
   width: 100%;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Brilla bonito */
 }
 
 .btn-reto:hover {
