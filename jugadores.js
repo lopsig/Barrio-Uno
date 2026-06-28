@@ -89,29 +89,28 @@ const actualizarContador = () => {
   }
 };
 
-const renderizarAlbum = () => {
+const renderizarAlbum = (listaJugadores = cromosMundial) => {
   const contenedor = document.getElementById("album");
   if (!contenedor) return;
   contenedor.innerHTML = "";
 
-  cromosMundial.forEach(jugador => {
+  // Iteramos sobre la lista filtrada o completa
+  listaJugadores.forEach(jugador => {
     const estaDesbloqueado = cromosDesbloqueados.includes(jugador.id);
 
     // CONTENEDOR PRINCIPAL EXTERNO
     const bloqueCromo = document.createElement("div");
     bloqueCromo.classList.add("contenedor-cromo");
 
-    // LA TARJETA (El div que usará tu compañero D)
+    // LA TARJETA
     const tarjeta = document.createElement("div");
     tarjeta.classList.add("card-cromo"); 
     tarjeta.style.backgroundColor = jugador.colorFondoHex;
     
-    // Si está bloqueado, el filtro gris SOLO afecta a la tarjeta, no al botón
     if (!estaDesbloqueado) {
       tarjeta.classList.add("cromo-bloqueado");
     }
 
-    // Contenido interno de la tarjeta (Datos de tus compañeros)
     tarjeta.innerHTML = `
       <img src="${jugador.urlBandera}" alt="Bandera de ${jugador.pais}" width="30">
       <img src="${jugador.urlImagen}" alt="Foto de ${jugador.nombre}">
@@ -125,10 +124,8 @@ const renderizarAlbum = () => {
       <p style="font-size: 0.85rem; font-style: italic; margin-top: 8px; color: #555;">"${jugador.curiosidad}"</p>
     `;
 
-    // Metemos la tarjeta dentro del bloque
     bloqueCromo.appendChild(tarjeta);
 
-    // EL BOTÓN QUEDA AFUERA Y DEBAJO DE LA TARJETA
     if (!estaDesbloqueado) {
       const botonReto = document.createElement("button");
       botonReto.classList.add("btn-reto");
@@ -146,7 +143,6 @@ const renderizarAlbum = () => {
   botones.forEach(boton => {
     boton.addEventListener("click", (e) => {
       const idJugador = parseInt(e.target.getAttribute("data-id"));
-      // Buscamos la tarjeta hermana que está justo arriba del botón
       const tarjetaElemento = e.target.previousElementSibling;
       
       ejecutarDesbloqueo(idJugador, tarjetaElemento);
@@ -161,19 +157,16 @@ const ejecutarDesbloqueo = (id, tarjetaElemento) => {
     cromosDesbloqueados.push(id);
   }
 
-  // Animación flash aplicada directo sobre la tarjeta
   tarjetaElemento.classList.add("animacion-flash");
 
   setTimeout(() => {
     tarjetaElemento.classList.remove("cromo-bloqueado");
     tarjetaElemento.classList.remove("animacion-flash");
-    renderizarAlbum();
+    // Al desbloquear, ejecutamos el filtro para mantener la vista actual correctamente
+    filtrarJugadores();
   }, 500);
 };
 
-
-renderizarAlbum();
-goles();
 
 //grupo c & d: total goles
 function goles() {
@@ -186,3 +179,47 @@ function goles() {
 
   document.getElementById("goles-totales").textContent = "Total Goles: "+totalGoles;
 }
+
+
+// =================================================================
+// ESTUDIANTE E — DESARROLLADOR DE INTERACTIVIDAD Y FILTROS
+// =================================================================
+
+// 1. Capturamos los elementos del HTML
+const buscadorNombre = document.getElementById("buscador-nombre");
+const filtroPais = document.getElementById("filtro-pais");
+
+// 2. Función principal que aplica los filtros combinados
+const filtrarJugadores = () => {
+  // Convertimos el texto a minúsculas para que la búsqueda no sea estricta (ej: "vinicius" y "Vinícius")
+  const textoBusqueda = buscadorNombre.value.toLowerCase();
+  const paisSeleccionado = filtroPais.value;
+
+  // Utilizamos la función de orden superior .filter()
+  const cromosFiltrados = cromosMundial.filter(jugador => {
+    // Condición A: ¿El nombre del jugador incluye el texto escrito?
+    const coincideNombre = jugador.nombre.toLowerCase().includes(textoBusqueda);
+    
+    // Condición B: ¿El país coincide o seleccionaron "todos"?
+    const coincidePais = (paisSeleccionado === "todos" || jugador.pais === paisSeleccionado);
+
+    // El jugador pasa el filtro solo si cumple AMBAS condiciones a la vez
+    return coincideNombre && coincidePais;
+  });
+
+  // 3. Volvemos a renderizar el álbum en tiempo real con los cromos filtrados
+  renderizarAlbum(cromosFiltrados);
+};
+
+// 4. Agregar los escuchadores de eventos (Listeners)
+// 'input' se dispara cada vez que el usuario escribe una letra
+buscadorNombre.addEventListener("input", filtrarJugadores);
+
+// 'change' se dispara cuando el usuario selecciona un país diferente en el menú
+filtroPais.addEventListener("change", filtrarJugadores);
+
+
+// --- EJECUCIÓN INICIAL ---
+// Renderizamos el álbum completo y los goles al cargar la página por primera vez
+renderizarAlbum();
+goles();
