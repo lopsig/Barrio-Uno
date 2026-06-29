@@ -240,6 +240,7 @@ const ejecutarDesbloqueo = (id, tarjetaElemento) => {
 
 
 //grupo c & d: total goles (solo cromos desbloqueados)
+//grupo c & d: total goles
 function goles() {
   let totalGoles = 0;
 
