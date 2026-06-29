@@ -1,0 +1,144 @@
+@import url('design-system.css');
+
+body {
+  background: var(--bg) url('img/bota dorado fondo.png') center/cover fixed no-repeat;
+  background-blend-mode: multiply;
+}
+
+.grupo-header {
+  text-align: center;
+  padding: 8rem 2rem 3rem;
+}
+
+.grupo-header h1 {
+  font-family: var(--display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 900;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--tx);
+  text-shadow: 0 0 40px var(--red-glow);
+  margin-bottom: 0.75rem;
+}
+
+.grupo-header .subtitle {
+  font-family: var(--display);
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  letter-spacing: 8px;
+  color: var(--red);
+}
+
+.countries {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem;
+}
+
+.country-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--bg2);
+  border: 1px solid var(--bd);
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  color: var(--tx);
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+  background-image: url('img/fondo para bandera paises.png');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+}
+
+.country-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, rgba(233,69,96,0.03), transparent 60%);
+  pointer-events: none;
+}
+
+.country-card h2,
+.country-card .ver-pais {
+  text-shadow: 0 1px 6px rgba(0,0,0,0.9);
+}
+
+.country-card:hover {
+  border-color: var(--red-glow);
+  box-shadow: var(--shadow);
+  transform: translateY(-6px);
+}
+
+.country-card:hover::before {
+  background: linear-gradient(135deg, rgba(233,69,96,0.08), transparent 60%);
+}
+
+.country-card img {
+  width: 100%;
+  max-width: 160px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+.country-card h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.ver-pais {
+  font-size: 0.6rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--red);
+  opacity: 0;
+  transform: translateY(5px);
+  transition: all var(--transition);
+  position: relative;
+  z-index: 1;
+}
+
+.country-card:hover .ver-pais {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.footer {
+  text-align: center;
+  padding: 2.5rem 2rem;
+  border-top: 1px solid var(--bd);
+}
+
+.footer p {
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  color: var(--tx3);
+  text-transform: uppercase;
+}
+
+.footer a { color: inherit; text-decoration: none; }
+
+@media (max-width: 768px) {
+  .grupo-header { padding: 7rem 1rem 2rem; }
+  .countries {
+    grid-template-columns: 1fr;
+    max-width: 350px;
+    gap: 1.5rem;
+    padding: 0 1rem 3rem;
+  }
+  .country-card img { max-width: 120px; height: 80px; }
+}
