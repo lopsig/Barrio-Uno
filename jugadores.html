@@ -1,30 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Barrio-Uno-Jugadores</title>
-  <link rel="stylesheet" href="jugadores.css">
-</head>
-<body>
-  <header>
-    <h1>Álbum Virtual - Mundial 2026</h1>
-    <p>Colecciona los cromos de tus jugadores favoritos</p>
-    <div id="contador-progreso"></div>
-  </header>
-  
-  
-  <div id="album">
-    <!-- Las tarjetas .card-cromo se generan dinámicamente en jugadores.js -->
-  </div>
-
-  <div id="goles-totales"> 
-    <!-- aqui van los goles -->
-  </div>
+<!DOCTYPE html><html lang="es"><head>  <meta charset="UTF-8">  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Barrio-Uno-Jugadores</title>  <link rel="stylesheet" href="design-system.css">  <link rel="stylesheet" href="jugadores.css"></head><body>  <div class="accent-bar"></div>  <nav class="nav">    <div class="nav-logo">B1<span>.</span></div>    <ul class="nav-links">      <li><a href="index.html">Inicio</a></li>      <li class="nav-dropdown">
+        <a href="index.html#grupos">Grupos</a>
+        <div class="dropdown-menu">
+          <a href="Grupo-A/paginas/grupoA.html">Grupo A</a>
+          <a href="Grupo-B/paginas/grupoB.html">Grupo B</a>
+          <a href="GrupoC/Paginas/grupoC.html">Grupo C</a>
+          <a href="Grupo-D/paginas/grupoD.html">Grupo D</a>
+          <a href="Grupo-E/paginas/grupoE.html">Grupo E</a>
+          <a href="grupo_F/paginas/grupoF.html">Grupo F</a>
+        </div>
+      </li>      <li><a href="jugadores.html">Álbum <span id="nav-progreso"></span></a></li>      <li><a href="integrantes.html">Sobre Nosotros</a></li>    </ul>  </nav>  <div class="back-nav"><a href="index.html" class="back-btn">&larr; Volver al inicio</a></div>  <header>    <h1>Álbum Virtual - Mundial 2026</h1>    <p>Colecciona los cromos de tus jugadores favoritos</p>    <div id="contador-progreso"></div>  </header>  <div id="banderas-desbloqueadas"></div>  <!--Cambios realizados por el estudiante E-->  <div id="barra-filtros">    <input type="text" id="buscador-nombre" placeholder="Buscar jugador por nombre...">    <select id="filtro-pais">      <option value="todos">Todos los países</option>      <option value="Suiza">Suiza</option>      <option value="Canadá">Canadá</option>      <option value="Bosnia-Herzegovina">Bosnia-Herzegovina</option>      <option value="México">México</option>      <option value="Corea del Sur">Corea del Sur</option>      <option value="Qatar">Qatar</option>      <option value="Brasil">Brasil</option>      <option value="Marruecos">Marruecos</option>      <option value="Escocia">Escocia</option>      <option value="Estados Unidos">Estados Unidos</option>      <option value="Türkiye">Türkiye</option>      <option value="Paraguay">Paraguay</option>    </select>  </div>  <!--Fin: estudiante E-->  <div id="album">    <!-- Las tarjetas .card-cromo se generan dinámicamente en jugadores.js -->  </div>  <div id="goles-totales">    <!-- aqui van los goles -->  </div>  <script src="jugadores.js"></script></body></html>
 
 
-
-
-  <script src="jugadores.js"></script>
-</body>
-</html>
